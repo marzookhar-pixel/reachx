@@ -1838,28 +1838,18 @@ body {
 /* =========================================================
    SOCIAL MEDIA ICONS - FIX SIZE
    ========================================================= */
-
-.social-icons {
+/* FIX WHATSAPP, YOUTUBE & INSTAGRAM ICON SIZE */
+.footer-social-link {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
-.social-icons img {
-    width: 32px;
-    height: 32px;
-    max-width: 32px;
-    object-fit: contain;
-    display: block;
-}
-
-/* Common alternative class names */
-.social-links img,
-.social-media img,
-.social-icon img {
-    width: 32px;
-    height: 32px;
-    max-width: 32px;
+.footer-social-link img {
+    width: 28px !important;
+    height: 28px !important;
+    max-width: 28px !important;
+    max-height: 28px !important;
     object-fit: contain;
     display: block;
 }
