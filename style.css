@@ -1,12 +1,3 @@
-/* =========================================================
-REACHX INFOTECH
-CLEAN MASTER CSS
-========================================================= */
-
-/* =========================================================
-RESET
-========================================================= */
-
 * {
     margin: 0;
     padding: 0;
@@ -1491,6 +1482,10 @@ SOCIAL MEDIA ICONS
         );
 
     border-top: 1px solid #292942;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .footer-container {
@@ -1935,11 +1930,11 @@ SOCIAL MEDIA ICONS
 
 .footer-bottom {
     width: 100%;
-    max-width: 1150px;
 
     margin: 18px auto 0;
 
     text-align: center;
+    padding: 0 !important;
 }
 
 
@@ -3227,6 +3222,9 @@ SOCIAL MEDIA ICONS
     border-top: 1px solid #292942;
 
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -4073,49 +4071,297 @@ SOCIAL MEDIA ICONS
     }
 
     .footer-bottom {
-        min-height: 65px;
-        padding: 18px 50px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 45px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        padding: 10px !important;
+        margin: 0 !important;
+
+        box-sizing: border-box !important;
     }
 
-    .footer .footer-bottom p {
+    .footer-bottom p {
+        width: 100% !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
         font-size: 13px;
         line-height: 1.5;
+        text-align: center !important;
     }
 
     .footer .footer-security-icon {
         left: 15px !important;
     }
 
+    /* Copyright - centered for mobile */
+    .footer .footer-bottom {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        position: relative !important;
+
+        margin: 0 !important;
+        padding: 10px !important;
+
+        box-sizing: border-box !important;
+        text-align: center !important;
+
+        border-top: 1px solid #25282d;
+    }
+
+    .footer .footer-bottom p {
+        display: block !important;
+
+        width: 100% !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        position: static !important;
+        left: auto !important;
+        transform: none !important;
+
+        text-align: center !important;
+        font-size: 13px;
+    }
+
 }
 /* =========================================
-   COPYRIGHT - PERFECT CENTER
+   MOBILE FOOTER - 767PX
+========================================= */
+/* WHO THIS IS DESIGNED FOR - HEADING
 ========================================= */
 
-.footer .footer-bottom {
-    width: 100% !important;
-    display: block !important;
-    position: relative !important;
+.who-program h2 {
+    font-size: 32px !important;
+    line-height: 1.2 !important;
+    font-weight: 800 !important;
+    margin-bottom: 10px;
+}
+/* =====================================================
+   PROFESSIONAL COMPACT MOBILE FOOTER
+===================================================== */
 
-    margin: 0 !important;
+@media (max-width: 767px) {
+
+    .footer {
+        width: 100%;
+        overflow: visible;
+    }
+
+    /* 2-column compact layout */
+    .footer-main {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 22px 18px !important;
+
+        padding: 28px 16px 22px !important;
+        margin: 0 !important;
+    }
+
+    .footer-column {
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Section headings */
+    .footer-column h3 {
+        font-size: 12px !important;
+        line-height: 1.2 !important;
+        margin: 7px 0 6px !important;
+        letter-spacing: 0.4px;
+    }
+
+    /* Top icons */
+    .footer-icon-circle {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 11px !important;
+        margin-bottom: 6px !important;
+    }
+
+    /* Small heading line */
+    .footer-line {
+        width: 28px !important;
+        height: 2px !important;
+        margin: 0 0 10px !important;
+    }
+
+    /* Office */
+    .office-location {
+        margin: 0 0 9px !important;
+    }
+
+    .office-location h4 {
+        font-size: 11px !important;
+        line-height: 1.2 !important;
+        margin: 0 0 3px !important;
+    }
+
+    .office-location p {
+        font-size: 10px !important;
+        line-height: 1.35 !important;
+        margin: 0 !important;
+    }
+
+    .office-divider {
+        margin: 8px 0 !important;
+    }
+
+    /* Contact / Blog / Social items */
+    .footer-contact-item,
+    .footer-blog-item,
+    .footer-social-item {
+        display: flex !important;
+        align-items: center !important;
+
+        font-size: 11px !important;
+        line-height: 1.2 !important;
+
+        gap: 7px !important;
+        margin: 0 0 8px !important;
+        padding: 0 !important;
+    }
+
+    /* Small icons */
+    .contact-icon,
+    .blog-icon,
+    .social-icon {
+        width: 23px !important;
+        height: 23px !important;
+        min-width: 23px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        font-size: 10px !important;
+    }
+
+    /* Blog link */
+    .footer-blog-link {
+        display: inline-block !important;
+        font-size: 10px !important;
+        margin-top: 2px !important;
+    }
+
+    /* Copyright */
+    .footer-bottom {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 45px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        padding: 10px !important;
+        margin: 0 !important;
+
+        box-sizing: border-box !important;
+    }
+
+    .footer-bottom p {
+        width: 100% !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        text-align: center !important;
+
+        font-size: 10px !important;
+        line-height: 1.4 !important;
+    }
+
+}
+.footer-bottom {
+    width: 100vw !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    text-align: center !important;
+    padding: 10px 0 !important;
+    box-sizing: border-box !important;
+}
+
+.footer-bottom p {
+    width: 100% !important;
+    max-width: none !important;
+
+    margin: 0 auto !important;
+    padding: 0 !important;
+
+    text-align: center !important;
+}
+.footer {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.footer-main {
+    width: 100% !important;
+}
+
+/* =====================================================
+   FINAL COPYRIGHT CENTER FIX
+===================================================== */
+
+.footer > .footer-bottom {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+
+    justify-content: center !important;
+    align-items: center !important;
+
+    margin: 25px 0 0 0 !important;
     padding: 20px 10px !important;
 
     box-sizing: border-box !important;
+
     text-align: center !important;
 
-    border-top: 1px solid #25282d;
+    border-top: 1px solid #292942;
 }
 
-.footer .footer-bottom p {
+.footer > .footer-bottom > p {
     display: block !important;
 
     width: 100% !important;
+    max-width: 100% !important;
 
     margin: 0 !important;
     padding: 0 !important;
 
     position: static !important;
     left: auto !important;
+    right: auto !important;
+
     transform: none !important;
 
     text-align: center !important;
+
+    color: #aaaaaa !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
 }
+
+
+
