@@ -33,6 +33,7 @@ function openConsultationForm() {
             <button
                 id="closeConsultation"
                 type="button"
+                aria-label="Close form"
                 style="
                     position: absolute;
                     top: 12px;
@@ -65,25 +66,33 @@ function openConsultationForm() {
                 Fill in your details and we'll get in touch with you.
             </p>
 
-            <form id="consultationForm">
+            <form id="consultationForm" novalidate>
 
-                <label style="
-                    display:block;
-                    margin-bottom:7px;
-                    color:white;
-                ">
+                <!-- NAME -->
+
+                <label
+                    for="consultationName"
+                    style="
+                        display:block;
+                        margin-bottom:7px;
+                        color:white;
+                    "
+                >
                     Name
                 </label>
 
                 <input
+                    id="consultationName"
                     type="text"
                     name="name"
                     placeholder="Enter your name"
+                    autocomplete="name"
+                    maxlength="50"
                     required
                     style="
                         width:100%;
                         padding:13px;
-                        margin-bottom:18px;
+                        margin-bottom:6px;
                         border:1px solid #292942;
                         border-radius:8px;
                         background:#0f0f10;
@@ -92,23 +101,42 @@ function openConsultationForm() {
                     "
                 >
 
-                <label style="
-                    display:block;
-                    margin-bottom:7px;
-                    color:white;
-                ">
+                <small
+                    id="nameError"
+                    style="
+                        display:none;
+                        color:#ff5c5c;
+                        font-size:12px;
+                        margin-bottom:12px;
+                    "
+                ></small>
+
+
+                <!-- EMAIL -->
+
+                <label
+                    for="consultationEmail"
+                    style="
+                        display:block;
+                        margin-bottom:7px;
+                        color:white;
+                    "
+                >
                     Email
                 </label>
 
                 <input
+                    id="consultationEmail"
                     type="email"
                     name="email"
                     placeholder="Enter your email"
+                    autocomplete="email"
+                    maxlength="100"
                     required
                     style="
                         width:100%;
                         padding:13px;
-                        margin-bottom:18px;
+                        margin-bottom:6px;
                         border:1px solid #292942;
                         border-radius:8px;
                         background:#0f0f10;
@@ -117,23 +145,43 @@ function openConsultationForm() {
                     "
                 >
 
-                <label style="
-                    display:block;
-                    margin-bottom:7px;
-                    color:white;
-                ">
+                <small
+                    id="emailError"
+                    style="
+                        display:none;
+                        color:#ff5c5c;
+                        font-size:12px;
+                        margin-bottom:12px;
+                    "
+                ></small>
+
+
+                <!-- PHONE -->
+
+                <label
+                    for="consultationPhone"
+                    style="
+                        display:block;
+                        margin-bottom:7px;
+                        color:white;
+                    "
+                >
                     Phone Number
                 </label>
 
                 <input
+                    id="consultationPhone"
                     type="tel"
                     name="phone"
-                    placeholder="Enter your phone number"
+                    placeholder="Enter your 10-digit mobile number"
+                    autocomplete="tel"
+                    inputmode="numeric"
+                    maxlength="13"
                     required
                     style="
                         width:100%;
                         padding:13px;
-                        margin-bottom:18px;
+                        margin-bottom:6px;
                         border:1px solid #292942;
                         border-radius:8px;
                         background:#0f0f10;
@@ -142,21 +190,38 @@ function openConsultationForm() {
                     "
                 >
 
-                <label style="
-                    display:block;
-                    margin-bottom:7px;
-                    color:white;
-                ">
+                <small
+                    id="phoneError"
+                    style="
+                        display:none;
+                        color:#ff5c5c;
+                        font-size:12px;
+                        margin-bottom:12px;
+                    "
+                ></small>
+
+
+                <!-- COURSE -->
+
+                <label
+                    for="consultationCourse"
+                    style="
+                        display:block;
+                        margin-bottom:7px;
+                        color:white;
+                    "
+                >
                     Course
                 </label>
 
                 <select
+                    id="consultationCourse"
                     name="course"
                     required
                     style="
                         width:100%;
                         padding:13px;
-                        margin-bottom:22px;
+                        margin-bottom:6px;
                         border:1px solid #292942;
                         border-radius:8px;
                         background:#0f0f10;
@@ -178,12 +243,48 @@ function openConsultationForm() {
                         Full Stack Development
                     </option>
 
+                    <option value="AI and Machine Learning">
+                        AI and Machine Learning
+                    </option>
+
                     <option value="Digital Marketing">
                         Digital Marketing
                     </option>
                 </select>
 
+                <small
+                    id="courseError"
+                    style="
+                        display:none;
+                        color:#ff5c5c;
+                        font-size:12px;
+                        margin-bottom:15px;
+                    "
+                ></small>
+
+
+                <!-- GENERAL ERROR -->
+
+                <div
+                    id="formError"
+                    role="alert"
+                    style="
+                        display:none;
+                        margin:5px 0 15px;
+                        padding:10px;
+                        background:#351717;
+                        border:1px solid #713333;
+                        border-radius:7px;
+                        color:#ff8585;
+                        font-size:13px;
+                    "
+                ></div>
+
+
+                <!-- SUBMIT -->
+
                 <button
+                    id="consultationSubmit"
                     type="submit"
                     style="
                         width:100%;
@@ -209,7 +310,45 @@ function openConsultationForm() {
 
 
     /* =====================================================
-       CLOSE BUTTON
+       ELEMENTS
+    ====================================================== */
+
+    const form =
+        document.getElementById("consultationForm");
+
+    const nameInput =
+        document.getElementById("consultationName");
+
+    const emailInput =
+        document.getElementById("consultationEmail");
+
+    const phoneInput =
+        document.getElementById("consultationPhone");
+
+    const courseInput =
+        document.getElementById("consultationCourse");
+
+    const submitButton =
+        document.getElementById("consultationSubmit");
+
+    const formError =
+        document.getElementById("formError");
+
+    const nameError =
+        document.getElementById("nameError");
+
+    const emailError =
+        document.getElementById("emailError");
+
+    const phoneError =
+        document.getElementById("phoneError");
+
+    const courseError =
+        document.getElementById("courseError");
+
+
+    /* =====================================================
+       CLOSE FORM
     ====================================================== */
 
     document
@@ -222,63 +361,525 @@ function openConsultationForm() {
 
 
     /* =====================================================
-       SUBMIT FORM
+       CLOSE WHEN CLICKING OUTSIDE
     ====================================================== */
 
-    document
-        .getElementById("consultationForm")
-        .addEventListener("submit", function (event) {
+    modal.addEventListener("click", function (event) {
+
+        if (event.target === modal) {
+            modal.remove();
+        }
+
+    });
+
+
+    /* =====================================================
+       CLOSE WITH ESCAPE KEY
+    ====================================================== */
+
+    function handleEscape(event) {
+
+        if (event.key === "Escape") {
+            modal.remove();
+
+            document.removeEventListener(
+                "keydown",
+                handleEscape
+            );
+        }
+
+    }
+
+    document.addEventListener(
+        "keydown",
+        handleEscape
+    );
+
+
+    /* =====================================================
+       VALIDATION HELPERS
+    ====================================================== */
+
+    function showError(input, errorElement, message) {
+
+        input.style.borderColor = "#ff3b30";
+
+        errorElement.textContent = message;
+        errorElement.style.display = "block";
+
+    }
+
+
+    function clearError(input, errorElement) {
+
+        input.style.borderColor = "#292942";
+
+        errorElement.textContent = "";
+        errorElement.style.display = "none";
+
+    }
+
+
+    function clearAllErrors() {
+
+        clearError(nameInput, nameError);
+        clearError(emailInput, emailError);
+        clearError(phoneInput, phoneError);
+        clearError(courseInput, courseError);
+
+        formError.textContent = "";
+        formError.style.display = "none";
+
+    }
+
+
+    /* =====================================================
+       NAME VALIDATION
+    ====================================================== */
+
+    function validateName() {
+
+        const name =
+            nameInput.value.trim();
+
+        if (!name) {
+
+            showError(
+                nameInput,
+                nameError,
+                "Please enter your name."
+            );
+
+            return false;
+
+        }
+
+        if (name.length < 2) {
+
+            showError(
+                nameInput,
+                nameError,
+                "Name must contain at least 2 characters."
+            );
+
+            return false;
+
+        }
+
+        if (name.length > 50) {
+
+            showError(
+                nameInput,
+                nameError,
+                "Name cannot be longer than 50 characters."
+            );
+
+            return false;
+
+        }
+
+        /*
+            Allows letters, spaces, dots, apostrophes
+            and hyphens.
+        */
+
+        const namePattern =
+            /^[A-Za-zÀ-ÖØ-öø-ÿ.' -]+$/;
+
+        if (!namePattern.test(name)) {
+
+            showError(
+                nameInput,
+                nameError,
+                "Please enter a valid name."
+            );
+
+            return false;
+
+        }
+
+        clearError(nameInput, nameError);
+
+        return true;
+
+    }
+
+
+    /* =====================================================
+       EMAIL VALIDATION
+    ====================================================== */
+
+    function validateEmail() {
+
+        const email =
+            emailInput.value.trim();
+
+        if (!email) {
+
+            showError(
+                emailInput,
+                emailError,
+                "Please enter your email address."
+            );
+
+            return false;
+
+        }
+
+        /*
+            Basic practical email validation.
+        */
+
+        const emailPattern =
+            /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+        if (!emailPattern.test(email)) {
+
+            showError(
+                emailInput,
+                emailError,
+                "Please enter a valid email address."
+            );
+
+            return false;
+
+        }
+
+        if (email.length > 100) {
+
+            showError(
+                emailInput,
+                emailError,
+                "Email address is too long."
+            );
+
+            return false;
+
+        }
+
+        clearError(emailInput, emailError);
+
+        return true;
+
+    }
+
+
+    /* =====================================================
+       PHONE VALIDATION
+    ====================================================== */
+
+    function validatePhone() {
+
+        let phone =
+            phoneInput.value.trim();
+
+        if (!phone) {
+
+            showError(
+                phoneInput,
+                phoneError,
+                "Please enter your phone number."
+            );
+
+            return false;
+
+        }
+
+        /*
+            Remove spaces, hyphens and brackets.
+        */
+
+        phone =
+            phone.replace(/[\s()-]/g, "");
+
+
+        /*
+            Accept:
+            9876543210
+            +919876543210
+            919876543210
+        */
+
+        if (phone.startsWith("+91")) {
+
+            phone =
+                phone.substring(3);
+
+        } else if (phone.startsWith("91") && phone.length === 12) {
+
+            phone =
+                phone.substring(2);
+
+        }
+
+
+        /*
+            Indian mobile number:
+            10 digits beginning with 6, 7, 8 or 9.
+        */
+
+        const phonePattern =
+            /^[6-9]\d{9}$/;
+
+        if (!phonePattern.test(phone)) {
+
+            showError(
+                phoneInput,
+                phoneError,
+                "Please enter a valid 10-digit Indian mobile number."
+            );
+
+            return false;
+
+        }
+
+        clearError(phoneInput, phoneError);
+
+        return true;
+
+    }
+
+
+    /* =====================================================
+       COURSE VALIDATION
+    ====================================================== */
+
+    function validateCourse() {
+
+        const course =
+            courseInput.value;
+
+        if (!course) {
+
+            showError(
+                courseInput,
+                courseError,
+                "Please select a course."
+            );
+
+            return false;
+
+        }
+
+        clearError(courseInput, courseError);
+
+        return true;
+
+    }
+
+
+    /* =====================================================
+       LIVE VALIDATION
+    ====================================================== */
+
+    nameInput.addEventListener(
+        "blur",
+        validateName
+    );
+
+    emailInput.addEventListener(
+        "blur",
+        validateEmail
+    );
+
+    phoneInput.addEventListener(
+        "blur",
+        validatePhone
+    );
+
+    courseInput.addEventListener(
+        "change",
+        validateCourse
+    );
+
+
+    /* =====================================================
+       PHONE INPUT
+       Allow only numbers, spaces, +, -, (, )
+    ====================================================== */
+
+    phoneInput.addEventListener(
+        "input",
+        function () {
+
+            this.value =
+                this.value.replace(
+                    /[^0-9+()\-\s]/g,
+                    ""
+                );
+
+        }
+    );
+
+
+    /* =====================================================
+       FORM SUBMIT
+    ====================================================== */
+
+    form.addEventListener(
+        "submit",
+        function (event) {
 
             event.preventDefault();
 
-
-            // Get student information
-
-            const name = this.elements["name"].value.trim();
-
-            const email = this.elements["email"].value.trim();
-
-            const phone = this.elements["phone"].value.trim();
-
-            const course = this.elements["course"].value;
+            clearAllErrors();
 
 
-            // Create WhatsApp message
+            /*
+                Validate every field.
+            */
+
+            const validName =
+                validateName();
+
+            const validEmail =
+                validateEmail();
+
+            const validPhone =
+                validatePhone();
+
+            const validCourse =
+                validateCourse();
+
+
+            /*
+                Stop submission if anything
+                is invalid.
+            */
+
+            if (
+                !validName ||
+                !validEmail ||
+                !validPhone ||
+                !validCourse
+            ) {
+
+                formError.textContent =
+                    "Please correct the highlighted fields before continuing.";
+
+                formError.style.display =
+                    "block";
+
+                /*
+                    Focus first invalid field.
+                */
+
+                if (!validName) {
+                    nameInput.focus();
+                } else if (!validEmail) {
+                    emailInput.focus();
+                } else if (!validPhone) {
+                    phoneInput.focus();
+                } else {
+                    courseInput.focus();
+                }
+
+                return;
+
+            }
+
+
+            /* =================================================
+               GET VALIDATED DATA
+            ================================================== */
+
+            const name =
+                nameInput.value.trim();
+
+            const email =
+                emailInput.value.trim();
+
+            let phone =
+                phoneInput.value.trim();
+
+            const course =
+                courseInput.value;
+
+
+            /*
+                Clean phone number for WhatsApp.
+            */
+
+            phone =
+                phone.replace(
+                    /[\s()-]/g,
+                    ""
+                );
+
+            if (phone.startsWith("+91")) {
+
+                phone =
+                    phone.substring(3);
+
+            } else if (
+                phone.startsWith("91") &&
+                phone.length === 12
+            ) {
+
+                phone =
+                    phone.substring(2);
+
+            }
+
+
+            /* =================================================
+               CREATE WHATSAPP MESSAGE
+            ================================================== */
 
             const message =
-                "Hello ReachX Infotech!%0A%0A" +
-                "I would like to get career guidance.%0A%0A" +
+                "Hello ReachX Infotech!\n\n" +
+                "I would like to get career guidance.\n\n" +
                 "Name: " +
-                encodeURIComponent(name) +
-                "%0A" +
+                name +
+                "\n" +
 
                 "Email: " +
-                encodeURIComponent(email) +
-                "%0A" +
+                email +
+                "\n" +
 
                 "Phone: " +
-                encodeURIComponent(phone) +
-                "%0A" +
+                phone +
+                "\n" +
 
                 "Course: " +
-                encodeURIComponent(course);
+                course;
 
 
-            // ReachX WhatsApp number
+            /* =================================================
+               REACHX WHATSAPP NUMBER
+            ================================================== */
 
-            const whatsappNumber = "918105383850";
+            const whatsappNumber =
+                "918105383850";
 
 
-            // WhatsApp URL
+            /* =================================================
+               WHATSAPP URL
+            ================================================== */
 
             const whatsappURL =
                 "https://wa.me/" +
                 whatsappNumber +
                 "?text=" +
-                message;
+                encodeURIComponent(message);
 
 
-            // Open WhatsApp
+            /* =================================================
+               DISABLE BUTTON
+            ================================================== */
+
+            submitButton.disabled = true;
+
+            submitButton.textContent =
+                "Opening WhatsApp...";
+
+            submitButton.style.opacity =
+                "0.7";
+
+
+            /* =================================================
+               OPEN WHATSAPP
+            ================================================== */
 
             window.open(
                 whatsappURL,
@@ -286,11 +887,23 @@ function openConsultationForm() {
             );
 
 
-            // Close modal
+            /* =================================================
+               CLOSE MODAL
+            ================================================== */
 
-            modal.remove();
+            setTimeout(function () {
 
-        });
+                modal.remove();
+
+                document.removeEventListener(
+                    "keydown",
+                    handleEscape
+                );
+
+            }, 300);
+
+        }
+    );
 
 }
 
@@ -299,124 +912,144 @@ function openConsultationForm() {
    STICKY COUNTDOWN TIMER
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-    /*
-        Starting countdown:
+        /*
+            Starting countdown:
 
-        00 Days
-        08 Hours
-        22 Minutes
-        12 Seconds
-    */
+            00 Days
+            08 Hours
+            22 Minutes
+            12 Seconds
+        */
 
-    let countdownTime =
-        (8 * 60 * 60) +
-        (22 * 60) +
-        12;
-
-
-    const daysElement =
-        document.getElementById("countdown-days");
-
-    const hoursElement =
-        document.getElementById("countdown-hours");
-
-    const minutesElement =
-        document.getElementById("countdown-minutes");
-
-    const secondsElement =
-        document.getElementById("countdown-seconds");
+        let countdownTime =
+            (8 * 60 * 60) +
+            (22 * 60) +
+            12;
 
 
-    // Stop if countdown elements don't exist
+        const daysElement =
+            document.getElementById(
+                "countdown-days"
+            );
 
-    if (
-        !daysElement ||
-        !hoursElement ||
-        !minutesElement ||
-        !secondsElement
-    ) {
-        return;
-    }
+        const hoursElement =
+            document.getElementById(
+                "countdown-hours"
+            );
+
+        const minutesElement =
+            document.getElementById(
+                "countdown-minutes"
+            );
+
+        const secondsElement =
+            document.getElementById(
+                "countdown-seconds"
+            );
 
 
-    function updateCountdown() {
+        /*
+            Stop if countdown elements
+            don't exist.
+        */
 
-        if (countdownTime <= 0) {
+        if (
+            !daysElement ||
+            !hoursElement ||
+            !minutesElement ||
+            !secondsElement
+        ) {
 
-            countdownTime = 0;
+            return;
 
         }
 
 
-        const days =
-            Math.floor(
-                countdownTime /
-                (24 * 60 * 60)
-            );
+        function updateCountdown() {
+
+            if (countdownTime <= 0) {
+
+                countdownTime = 0;
+
+            }
 
 
-        const hours =
-            Math.floor(
-                (
-                    countdownTime %
+            const days =
+                Math.floor(
+                    countdownTime /
                     (24 * 60 * 60)
-                ) /
-                (60 * 60)
-            );
+                );
 
 
-        const minutes =
-            Math.floor(
-                (
-                    countdownTime %
+            const hours =
+                Math.floor(
+                    (
+                        countdownTime %
+                        (24 * 60 * 60)
+                    ) /
                     (60 * 60)
-                ) /
-                60
-            );
+                );
 
 
-        const seconds =
-            countdownTime %
-            60;
+            const minutes =
+                Math.floor(
+                    (
+                        countdownTime %
+                        (60 * 60)
+                    ) /
+                    60
+                );
 
 
-        daysElement.textContent =
-            String(days).padStart(2, "0");
+            const seconds =
+                countdownTime %
+                60;
 
 
-        hoursElement.textContent =
-            String(hours).padStart(2, "0");
+            daysElement.textContent =
+                String(days).padStart(2, "0");
 
 
-        minutesElement.textContent =
-            String(minutes).padStart(2, "0");
+            hoursElement.textContent =
+                String(hours).padStart(2, "0");
 
 
-        secondsElement.textContent =
-            String(seconds).padStart(2, "0");
+            minutesElement.textContent =
+                String(minutes).padStart(2, "0");
 
 
-        if (countdownTime > 0) {
+            secondsElement.textContent =
+                String(seconds).padStart(2, "0");
 
-            countdownTime--;
+
+            if (countdownTime > 0) {
+
+                countdownTime--;
+
+            }
 
         }
 
+
+        /*
+            Show initial value immediately.
+        */
+
+        updateCountdown();
+
+
+        /*
+            Update every second.
+        */
+
+        setInterval(
+            updateCountdown,
+            1000
+        );
+
     }
-
-
-    // Show initial value immediately
-
-    updateCountdown();
-
-
-    // Update every second
-
-    setInterval(
-        updateCountdown,
-        1000
-    );
-
-});
+);
